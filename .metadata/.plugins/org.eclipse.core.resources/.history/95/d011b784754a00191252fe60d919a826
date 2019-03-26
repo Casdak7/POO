@@ -1,0 +1,15 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		System.out.println("Hello World!");
+		
+		Data aniversarioCassio = new Data();
+		
+		aniversarioCassio.setData(29, 2, 2016);
+		
+		Data aniversarioLuciano = new Data();
+		
+	}
+	
+
+}

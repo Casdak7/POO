@@ -1,0 +1,10 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		Data aniversario = new Data(11,"marco",2056);
+		
+		System.out.println(aniversario.toString());
+	}
+	
+
+}

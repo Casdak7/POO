@@ -1,0 +1,12 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		Data aniversario = new Data();
+		
+		aniversario.setData(10, 12, 1890);
+		
+		aniversario.getData();
+	}
+	
+
+}

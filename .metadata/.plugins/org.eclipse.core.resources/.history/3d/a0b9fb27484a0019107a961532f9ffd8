@@ -1,0 +1,12 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		System.out.println("Hello World!");
+		
+		Data aniversario = new Data();
+		
+		aniversario.setData(29, 2, 2018);
+	}
+	
+
+}
