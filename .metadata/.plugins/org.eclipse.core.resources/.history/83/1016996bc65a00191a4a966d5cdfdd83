@@ -1,0 +1,12 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		Data aniversario = new Data(32,1,2012);
+		Data aniversario2 = new Data(4,3,2011);
+		
+		
+		System.out.println(aniversario);
+	}
+	
+
+}

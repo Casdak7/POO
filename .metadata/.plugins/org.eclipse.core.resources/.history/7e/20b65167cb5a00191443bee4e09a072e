@@ -1,0 +1,5 @@
+
+public class ContaBancaria {
+	private String nomeCorrentista;
+	private float saldo, taxa_juros;
+}

@@ -1,0 +1,11 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		String inputName;
+		float inputSaldo;
+		
+		System.in.read();
+	}
+	
+
+}

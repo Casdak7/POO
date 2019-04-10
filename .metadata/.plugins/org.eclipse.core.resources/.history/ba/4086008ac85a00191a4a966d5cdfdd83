@@ -1,0 +1,12 @@
+
+public class Inicial {
+	public static void main(String args[]) {
+		Data aniversario = Data.verificaECriaData(32, 13, 1900);
+		Data aniversario2 = new Data(4,3,2011);
+		
+		
+		System.out.println(aniversario);
+	}
+	
+
+}

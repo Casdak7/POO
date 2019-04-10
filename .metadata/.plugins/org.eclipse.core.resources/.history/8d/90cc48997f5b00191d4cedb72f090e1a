@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Inicial {
+	public static void main(String args[]) {
+		String inputName;
+		float inputSaldo;
+		
+		Scanner input = new Scanner(System.in);
+		inputName = input.next();
+		inputSaldo = input.nextFloat();
+		
+		System.in.;
+	}
+	
+
+}
