@@ -2,81 +2,38 @@ import java.util.Scanner;
 
 public class Inicial {
 	public static void main(String args[]) {
-		//Enquanto nao quiser sair do loop, nao sai
-		boolean exit = false;
-		
-		//Variaveis que receberao os inputs para a cricacao da conta bancaria
-		String inputName;
-		float inputSaldo;
-		
-		int inputCommand;
-		float inputTaxa;
-		
 		Scanner input = new Scanner(System.in);
-		
-		//Variaveis para construir novas contas
-		ContaBancaria contas[] = new ContaBancaria[2];
-		
-		//Loop de input
-		for(int i = 0; i < 2; i++) {
-			System.out.println("Digite o nome do correntista " + i +":");
-			inputName = input.next();
-			System.out.println("Digite o saldo da conta " + i +":");
-			inputSaldo = input.nextFloat();
-			System.out.println("----------------------------------------------------------------");
-			
-			try {
-				contas[i] = new ContaBancaria(inputName, inputSaldo);
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Digite Novamente!");
-				i--;
-			}
-		}
-			
-		System.out.println(contas[0].toString());
-		System.out.println(contas[1].toString());
-		
-		while(!exit) {
-			System.out.println("----------------------------------------------------------------");
-			System.out.println("Menu de Acoes:\n1-Definir Taxa de Juros \n2-Corrigir saldo de uma conta \n3-Exibir Contas \n9-Sair");
-			inputCommand = input.nextInt();
-			
-			switch(inputCommand) {
-			case 1:
-				System.out.println("Digite a nova taxa de Juros:");
-				inputTaxa = input.nextFloat();
-				ContaBancaria.setTaxaJuros(inputTaxa);
-				break;
-			case 2:
-				System.out.println("Escolha a conta para ter seu saldo corrigido:");
-				for(int i = 0; i < 2; i++) {
-					System.out.println(i + "- " + contas[i].toString());
-				}
-				inputCommand = input.nextInt();
-				
-				try {
-					contas[inputCommand].corrigirSaldoComTaxa();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;
-			case 3:
-				System.out.println("Contas cadastradas:");
-				for(int i = 0; i < 2; i++) {
-					System.out.println(i + "- " + contas[i].toString());
-				}
-				break;
-			case 9:
-				System.out.println("Saindo do Programa...");
-				exit = true;
-				break;
-			}
-		}
+		double inputX;
+		double inputY;
+		System.out.print("Digite o x: ");
+		inputX = input.nextDouble();
+		System.out.print("Digite o y: ");
+		inputY = input.nextDouble();
 		
 		input.close();
-		System.exit(0);
+		
+		Ponto userPonto = null;
+		
+		try {
+			userPonto = new Ponto(inputX, inputY);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Ponto randomPonto = null;
+		
+		for(int i = 0; i < 100; i++) {
+			try {
+				randomPonto = new Ponto(Math.random()*501, Math.random()*501);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println(i + ") Distancia entre " + userPonto.toString() +
+					" - "+ randomPonto.toString() + ": " + userPonto.distancia(randomPonto));
+		}
 	}
 	
 
