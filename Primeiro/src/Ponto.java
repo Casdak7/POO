@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Ponto {
 
@@ -9,15 +10,15 @@ public class Ponto {
 	static private double limiteInferior = LIMITE_INFERIOR_DEFAULT; 
 	static private double limiteSuperior = LIMITE_SUPERIOR_DEFAULT;
 	
-	Ponto() throws Exception{
+	public Ponto() throws Exception{
 		setPonto(0, 0);
 	}
 	
-	Ponto(double x, double y) throws Exception{
+	public Ponto(double x, double y) throws Exception{
 		setPonto(x, y);
 	}
 	
-	Ponto(String ponto) throws Exception{
+	public Ponto(String ponto) throws Exception{
 		String[] stringArray = ponto.split(",|\\(|\\)");
 		double x = Double.parseDouble(stringArray[0]);
 		double y = Double.parseDouble(stringArray[1]);
@@ -91,8 +92,10 @@ public class Ponto {
 		return pontoString.toString();
 	}
 	
-	public Ponto clone() {
-		return this;
+	
+	//Criar novo ponto
+	public Ponto clonePonto() throws Exception {
+		return new Ponto(this.getX(), this.getY());
 	}
 	
 	public Ponto criaSwap() throws Exception {
@@ -155,6 +158,41 @@ public class Ponto {
 			return 0;
 		else
 			return 1;
+	}
+	
+	static public void randomPontos() {
+		Scanner input = new Scanner(System.in);
+		double inputX;
+		double inputY;
+		System.out.print("Digite o x: ");
+		inputX = input.nextDouble();
+		System.out.print("Digite o y: ");
+		inputY = input.nextDouble();
+		
+		input.close();
+		
+		Ponto userPonto = null;
+		
+		try {
+			userPonto = new Ponto(inputX, inputY);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Ponto randomPonto = null;
+		
+		for(int i = 0; i < 100; i++) {
+			try {
+				randomPonto = new Ponto(Math.random()*501, Math.random()*501);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println(i + ") Distancia entre " + userPonto.toString() +
+					" - "+ randomPonto.toString() + ": " + userPonto.distancia(randomPonto));
+		}
 	}
 
 }

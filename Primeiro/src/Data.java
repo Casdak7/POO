@@ -136,42 +136,42 @@ public class Data {
 	public static boolean  isDataValida(int dia, int mes, int ano) {
 
 		if(ano < 1582) {
-			System.out.println("Erro! Ano deve ser maior que 1582");
+//			System.out.println("Erro! Ano deve ser maior que 1582");
 			return false;
 		}
 
 		if(mes <= 0 || mes > 12) {
-			System.out.println("Erro! Mes deve possuir um valor de 1 a 12.");
+//			System.out.println("Erro! Mes deve possuir um valor de 1 a 12.");
 			return false;
 		}
 
 		if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
 			if(!(dia > 0 && dia <= 31)) {
-				StringBuilder erro = new StringBuilder();
-				erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 31");
-				System.out.println(erro.toString());
+//				StringBuilder erro = new StringBuilder();
+//				erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 31");
+//				System.out.println(erro.toString());
 				return false;
 			}
 		} else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) {
 			if(!(dia > 0 && dia <= 30)) {
-				StringBuilder erro = new StringBuilder();
-				erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 30");
-				System.out.println(erro.toString());
+//				StringBuilder erro = new StringBuilder();
+//				erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 30");
+//				System.out.println(erro.toString());
 				return false;
 			}
 		} else {
 			if(isBissexto(ano)) {
 				if(!(dia > 0 && dia <= 29)) {
-					StringBuilder erro = new StringBuilder();
-					erro.append("Erro! O mes ").append(mes).append(" de um ano bissexto deve receber um valor de dia de 1 a 29");
-					System.out.println(erro.toString());
+//					StringBuilder erro = new StringBuilder();
+//					erro.append("Erro! O mes ").append(mes).append(" de um ano bissexto deve receber um valor de dia de 1 a 29");
+//					System.out.println(erro.toString());
 					return false;
 				}
 			} else {
 				if(!(dia > 0 && dia <= 28)) {
-					StringBuilder erro = new StringBuilder();
-					erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 28");
-					System.out.println(erro.toString());
+//					StringBuilder erro = new StringBuilder();
+//					erro.append("Erro! O mes ").append(mes).append(" deve receber um valor de dia de 1 a 28");
+//					System.out.println(erro.toString());
 					return false;
 				}
 			}
