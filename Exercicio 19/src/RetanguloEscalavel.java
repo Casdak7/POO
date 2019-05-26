@@ -80,5 +80,11 @@ public class RetanguloEscalavel implements ObjetoGeometrico,Escalavel {
 		return perimetro;
 	}
 
+	@Override
+	public ObjetoGeometrico Clona() {
+		RetanguloEscalavel clone = new RetanguloEscalavel(this.getSuperiorEsquerdo(), this.getInferiorDireito());
+		return clone;
+	}
+
 
 }

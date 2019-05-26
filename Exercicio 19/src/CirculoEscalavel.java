@@ -81,4 +81,10 @@ public class CirculoEscalavel implements ObjetoGeometrico,Escalavel {
          	// toString da classe Ponto2D é chamado implicitamente.
          	return centro + "-" + this.raio;
    	}
+
+	@Override
+	public ObjetoGeometrico Clona() {
+		CirculoEscalavel clone = new CirculoEscalavel(this.centro, this.raio);
+		return clone;
+	}
 }

@@ -28,5 +28,10 @@ interface ObjetoGeometrico {
    	 * @return o perímetro deste objeto geométrico.
    	 */
    	double calculaPerímetro();
- 
+   	
+   	/**
+   	 * O metodo cria um novo objeto com base no que o chamou e o retorna
+   	 * @return o clone do objeto
+   	 */
+   	ObjetoGeometrico Clona(); 
 }
