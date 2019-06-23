@@ -45,6 +45,7 @@ public class Uso23 {
 				wordTreeMap.put(textoArray[i], wordTreeMap.get(textoArray[i]) + 1);
 		}
 		
+		//Letra D
 		while(intTree.toArray().length < 20) {
 			intTree.add((int) (Math.random() * 50) + 1);
 		}
