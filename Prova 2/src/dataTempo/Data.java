@@ -1,8 +1,9 @@
 package dataTempo;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Data implements Comparable<Data>{
+public class Data implements Comparable<Data>, Serializable{
 
 	private int dia;
 	private int mes;

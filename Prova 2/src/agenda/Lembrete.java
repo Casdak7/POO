@@ -1,8 +1,11 @@
 package agenda;
 
+import java.io.Serializable;
+import java.util.Comparator;
+
 import dataTempo.Periodo;
 
-public class Lembrete extends ItemAgenda{
+public class Lembrete extends ItemAgenda implements Serializable{
 	private int minutosAlerta = 0;
 	
 	public Lembrete(int minutosAlerta, String titulo, Periodo periodo) throws Exception {
@@ -48,4 +51,17 @@ public class Lembrete extends ItemAgenda{
 		newString.append("Minutos para Alerta: ").append(this.getMinutosAlerta()).append("\n");
 		return newString.toString();
 	}
+}
+
+/**
+* Compara os Lembretes por ordem natural de minutos para o alerta.
+* 
+* @author Cassio Fernandes
+* @version 1.0 
+*/
+class ComparaLembrete implements Comparator<Lembrete> {
+	@Override
+ 	public int compare(Lembrete l1, Lembrete l2) {
+   	return l1.getMinutosAlerta() - l2.getMinutosAlerta();
+ 	}
 }

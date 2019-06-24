@@ -1,8 +1,12 @@
 package agenda;
 
+import java.io.Serializable;
+import java.util.Comparator;
+
+import dataTempo.Data;
 import dataTempo.Periodo;
 
-public abstract class ItemAgenda {
+public abstract class ItemAgenda implements Serializable{
 	
 	private String titulo;
 	private String descricao;
@@ -43,4 +47,20 @@ public abstract class ItemAgenda {
 	}
 	
 	
+}
+
+/**
+ * Fornece um método para ser usado na ordenação de várias instâncias da classe
+ * ItemAgenda pela ordenacao natural das datas de inicio.
+ * <p>
+ * Esta ordenação é realizada pelo método estático sort da classe Collections
+ *
+ * @author Cassio Fernandes
+ * @version 1.0 (junho-2019)
+ *
+ */
+class ComparaItem implements Comparator<ItemAgenda> {
+  	public int compare(ItemAgenda i1, ItemAgenda i2) {
+        	return i1.getPeriodo().getData_inicio().compareTo(i2.getPeriodo().getData_inicio());
+  	}
 }

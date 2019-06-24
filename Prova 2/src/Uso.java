@@ -35,6 +35,8 @@ public class Uso {
 					+ "4-Criar Meta\n "
 					+ "5-Listar por Periodo\n "
 					+ "6-Listar Metas por Prioridade\n "
+					+ "7-Listar Eventos por Local\n "
+					+ "8-Listar Lembretes por ordem de minutos para alarme\n "
 					+ "9-Sair");
 			System.out.print("Digite um comando:");
 			control = entrada.nextInt();
@@ -51,9 +53,9 @@ public class Uso {
 				agenda.insere(new Evento(local, titulo, descricao, periodo));
 				break;
 			case 3:
-				periodo = inputPeriodo();
-				titulo = inputTitulo();
-				descricao = inputDescricao();
+				periodo = Uso.inputPeriodo();
+				titulo = Uso.inputTitulo();
+				descricao = Uso.inputDescricao();
 				System.out.print("Minutos para alerta:");
 				minutos = entrada.nextInt();
 				try {
@@ -64,9 +66,9 @@ public class Uso {
 				}
 				break;
 			case 4:
-				periodo = inputPeriodo();
-				titulo = inputTitulo();
-				descricao = inputDescricao();
+				periodo = Uso.inputPeriodo();
+				titulo = Uso.inputTitulo();
+				descricao = Uso.inputDescricao();
 				System.out.print("Prioridade:");
 				prioridade = entrada.nextInt();
 				agenda.insere(new Meta(prioridade, titulo, descricao, periodo));
@@ -76,7 +78,11 @@ public class Uso {
 				System.out.println(agenda.getMetasPorPrioridade().toString());
 				break;
 			case 7:
+				System.out.println(agenda.getEventosPorLocal().toString());
+				break;
 			case 8:
+				System.out.println(agenda.getLembretesPorMinutos().toString());
+				break;
 			case 9:
 				System.out.println("Saindo...");
 				quit = true;

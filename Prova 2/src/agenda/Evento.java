@@ -1,8 +1,11 @@
 package agenda;
 
+import java.io.Serializable;
+import java.util.Comparator;
+
 import dataTempo.Periodo;
 
-public class Evento extends ItemAgenda {
+public class Evento extends ItemAgenda implements Comparable<Evento>, Serializable{
 	private String local;
 	
 	public Evento(String local, String titulo, Periodo periodo) {
@@ -41,4 +44,24 @@ public class Evento extends ItemAgenda {
 		newString.append("Local: ").append(this.getLocal()).append("\n");
 		return newString.toString();
 	}
+
+	@Override
+	public int compareTo(Evento o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
+
+/**
+* Compara os Eventos por ordem alfabetica de local.
+* 
+* @author Cassio Fernandes
+* @version 1.0 
+*/
+class ComparaEvento implements Comparator<Evento> {
+	@Override
+ 	public int compare(Evento m1, Evento m2) {
+   	return m1.getLocal().compareToIgnoreCase(m2.getLocal());
+ 	}
 }

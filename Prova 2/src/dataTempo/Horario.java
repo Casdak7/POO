@@ -1,6 +1,8 @@
 package dataTempo;
 
-public class Horario {
+import java.io.Serializable;
+
+public class Horario implements Serializable{
 	private int hora;
 	private int minuto;
 	private int segundo;

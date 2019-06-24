@@ -1,11 +1,12 @@
 package agenda;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import dataTempo.Data;
 import dataTempo.Periodo;
 
-public class Meta extends ItemAgenda implements Comparable<Meta> {
+public class Meta extends ItemAgenda implements Comparable<Meta>, Serializable {
 	private int prioridade;
 	
 	public Meta(int prioridade, String titulo, Periodo periodo) {

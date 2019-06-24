@@ -1,6 +1,8 @@
 package dataTempo;
 
-public class Periodo {
+import java.io.Serializable;
+
+public class Periodo implements Serializable{
 	private Data data_inicio, data_fim;
 	private Horario horario_inicio, horario_fim;
 	

@@ -19,6 +19,7 @@ public class Agenda implements Serializable{
 	}
 	
 	public LinkedList<ItemAgenda> getItensAgenda() {
+		Collections.sort((List) this.colecaoItensAgenda, new ComparaItem());
 		return this.colecaoItensAgenda;
 	}
 	
@@ -32,7 +33,7 @@ public class Agenda implements Serializable{
 		newString.append("Agenda: \n");
 		while(i.hasNext()) {
 			item = i.next();
-			newString.append(k + "- ").append(item.toString()).append("-----------------\n");
+			newString.append(k + "- ").append(item.toString()).append("------------------\n");
 			k++;
 		}
 		return newString.toString();
@@ -67,6 +68,38 @@ public class Agenda implements Serializable{
 		}
 		
 		Collections.sort((List)newAgenda.getItensAgenda(), new ComparaMeta());
+		
+		return newAgenda;
+	}
+	
+	public Agenda getEventosPorLocal(){
+		Iterator<ItemAgenda> i = colecaoItensAgenda.iterator();
+		Agenda newAgenda = new Agenda();
+		ItemAgenda item;
+		while(i.hasNext()) {
+			item = i.next();
+			if(item.getClass() == Evento.class) {				
+				newAgenda.getItensAgenda().add(item);
+			}
+		}
+		
+		Collections.sort((List)newAgenda.getItensAgenda(), new ComparaEvento());
+		
+		return newAgenda;
+	}
+	
+	public Agenda getLembretesPorMinutos(){
+		Iterator<ItemAgenda> i = colecaoItensAgenda.iterator();
+		Agenda newAgenda = new Agenda();
+		ItemAgenda item;
+		while(i.hasNext()) {
+			item = i.next();
+			if(item.getClass() == Lembrete.class) {				
+				newAgenda.getItensAgenda().add(item);
+			}
+		}
+		
+		Collections.sort((List)newAgenda.getItensAgenda(), new ComparaLembrete());
 		
 		return newAgenda;
 	}
