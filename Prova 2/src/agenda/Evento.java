@@ -32,4 +32,13 @@ public class Evento extends ItemAgenda {
 	public void setLocal(String local) {
 		this.local = local;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder newString = new StringBuilder();
+		newString.append("Evento\n----------------\n");
+		newString.append(super.toString());
+		newString.append("Local: ").append(this.getLocal()).append("\n");
+		return newString.toString();
+	}
 }

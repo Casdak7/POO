@@ -39,4 +39,13 @@ public class Lembrete extends ItemAgenda{
 		else
 			throw new Exception("Nao pode ser negativo!");
 	}	
+	
+	@Override
+	public String toString() {
+		StringBuilder newString = new StringBuilder();
+		newString.append("Lembrete\n----------------\n");
+		newString.append(super.toString());
+		newString.append("Minutos para Alerta: ").append(this.getMinutosAlerta()).append("\n");
+		return newString.toString();
+	}
 }

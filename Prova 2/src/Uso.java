@@ -5,22 +5,22 @@ import agenda.*;
 import dataTempo.*;
 
 public class Uso {
-
+	static Scanner entrada = new Scanner(System.in);
 	public static void main(String[] args) {
-		Scanner entrada = new Scanner(System.in);
-		
 		int control;
 		boolean quit = false;
 		
-		Data dataInicio = null;
-		Data dataFim = null;
-		Horario horarioInicio;
-		Horario horarioFim;
-		String entradaString;
-		int entradaInteira;
-		Periodo periodo = null;
+//		Data dataInicio = null;
+//		Data dataFim = null;
+//		Horario horarioInicio;
+//		Horario horarioFim;
+//		String entradaString;
+//		int entradaInteira;
 		
+		Periodo periodo = null;
 		String local;
+		int prioridade;
+		int minutos;
 		String titulo;
 		String descricao;
 		
@@ -28,7 +28,14 @@ public class Uso {
 		Agenda agenda = new Agenda();
 		
 		while(!quit) {
-			System.out.println("Menu:\n 1-Listar Agenda\n 2-Criar Evento\n 3-Criar Lembrete\n 4-Criar Meta\n 9-Sair");
+			System.out.println("Menu:\n "
+					+ "1-Listar Agenda\n "
+					+ "2-Criar Evento\n "
+					+ "3-Criar Lembrete\n "
+					+ "4-Criar Meta\n "
+					+ "5-Listar por Periodo\n "
+					+ "6-Listar Metas por Prioridade\n "
+					+ "9-Sair");
 			System.out.print("Digite um comando:");
 			control = entrada.nextInt();
 			
@@ -44,10 +51,32 @@ public class Uso {
 				agenda.insere(new Evento(local, titulo, descricao, periodo));
 				break;
 			case 3:
-
+				periodo = inputPeriodo();
+				titulo = inputTitulo();
+				descricao = inputDescricao();
+				System.out.print("Minutos para alerta:");
+				minutos = entrada.nextInt();
+				try {
+					agenda.insere(new Lembrete(minutos, titulo, descricao, periodo));
+				} catch (Exception e) {
+					System.out.println("Minutos para Alerta inválido!");
+					e.printStackTrace();
+				}
 				break;
 			case 4:
+				periodo = inputPeriodo();
+				titulo = inputTitulo();
+				descricao = inputDescricao();
+				System.out.print("Prioridade:");
+				prioridade = entrada.nextInt();
+				agenda.insere(new Meta(prioridade, titulo, descricao, periodo));
 				break;
+			case 5:
+			case 6:
+				System.out.println(agenda.getMetasPorPrioridade().toString());
+				break;
+			case 7:
+			case 8:
 			case 9:
 				System.out.println("Saindo...");
 				quit = true;
@@ -63,11 +92,10 @@ public class Uso {
 	}
 	
 	public static Periodo inputPeriodo() {
-		Scanner entrada = new Scanner(System.in);
 		Data dataInicio = null;
 		Data dataFim = null;
-		Horario horarioInicio;
-		Horario horarioFim;
+		Horario horarioInicio = null;
+		Horario horarioFim = null;
 		String entradaString;
 		int entradaInteira;
 		Periodo periodo = null;
@@ -105,15 +133,13 @@ public class Uso {
 			e.printStackTrace();
 		}
 //		System.out.println(dataInicio.toString()+" - "+dataFim.toString());
-		periodo = new Periodo(dataInicio, new Horario(), dataFim, new Horario());
+		periodo = new Periodo(dataInicio, horarioInicio, dataFim, horarioFim);
 //		System.out.println(periodo.getData_inicio().toString()+" - "+periodo.getData_fim().toString());
 		return periodo;
 	}
 	
 	public static String inputString(String mensagem) {
-		Scanner entrada = new Scanner(System.in);
 		String entradaString;
-		int entradaInteira;;
 		
 		System.out.print(mensagem);
 		entradaString = entrada.next();
@@ -121,15 +147,18 @@ public class Uso {
 	}
 	
 	public static String inputTitulo() {
-		return inputString("Titulo: ");
+		String input = inputString("Titulo: ");
+		return input;
 	}
 	
 	public static String inputDescricao() {
-		return inputString("Descricao: ");
+		String input = inputString("Descricao: ");
+		return input;
 	}
 	
 	public static String inputLocal() {
-		return inputString("Local: ");
+		String input = inputString("Local: ");
+		return input;
 	}
 
 }
