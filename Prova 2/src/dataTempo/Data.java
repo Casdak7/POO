@@ -3,24 +3,59 @@ package dataTempo;
 import java.io.Serializable;
 import java.util.Comparator;
 
+/**Classe que representa uma data e controla manipulações de datas do tipo dd/mm/yyyy ou d/m/yyyy.
+ * 
+ * @author Cassio Fernandes
+ * @version 1.0
+ *
+ */
+@SuppressWarnings("serial")
 public class Data implements Comparable<Data>, Serializable{
 
 	private int dia;
 	private int mes;
 	private int ano;
-
+	
+	/**Construtor padrão da classe Data
+	 * 
+	 * @return Data 1/1/1900
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
 	public Data() throws Exception{
 		setData(1, 1, 1900);
 	}
-
+	
+	/**Construtor de Data com dia instanciado em 1
+	 * 
+	 * @param mes : aceita valores de 1 a 12
+	 * @param ano : aceita valores maiores que 1562
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
 	public Data(int mes, int ano) throws Exception{
 		setData(1, mes, ano);
 	}
-
+	
+	/**Construtor de Data completo
+	 * 
+	 * @param dia : aceita valores de 1 a 31 (Depende do mês)
+	 * @param mes : aceita valores de 1 a 12
+	 * @param ano : aceita valores maiores que 1562
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
 	public Data(int dia, int mes, int ano) throws Exception{
 		setData(dia, mes, ano);
 	}
-
+	
+	/**
+	 * Construtor de Data através de uma String no formato dd/mm/yyyy
+	 * 
+	 * @param data
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
 	public Data(String data) throws Exception{
 
 		int dia = 0, mes = 0, ano = 0;
@@ -90,19 +125,41 @@ public class Data implements Comparable<Data>, Serializable{
 			setData(dia, mes, ano);
 		}
 	}
-
-	Data(int dia, String mesS, int ano) throws Exception{
+	
+	/**
+	 * Construtor de Data que aceita um mes pelo seu nome em String
+	 * @param dia
+	 * @param mesS
+	 * @param ano
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
+	public Data(int dia, String mesS, int ano) throws Exception{
 
 		int mes = whatMes(mesS);
 
 		setData(dia, mes, ano);
 
 	}
-
+	
+	/**
+	 * Retorna o objeto data atual
+	 * @return Data
+	 * @version 1.0 (junho-2019)
+	 */
 	public Data getData() {
 		return this;
 	}
-
+	
+	/**
+	 * Atribui os atributos de Data dado os parâmetros
+	 * @param dia
+	 * @param mes
+	 * @param ano
+	 * @return boolean
+	 * @throws Exception
+	 * @version 1.0 (junho-2019)
+	 */
 	public boolean setData(int dia, int mes, int ano) throws Exception {
 
 		if(!isDataValida(dia, mes, ano)) {
@@ -120,7 +177,13 @@ public class Data implements Comparable<Data>, Serializable{
 
 		return true;
 	}
-
+	
+	/**
+	 * Confere se o ano é bissexto, caso seja retorna true
+	 * @param ano 
+	 * @return boolean
+	 * @version 1.0 (junho-2019)
+	 */
 	public static boolean isBissexto(int ano) {
 		if(ano % 4 == 0) {
 			return true;
@@ -129,6 +192,12 @@ public class Data implements Comparable<Data>, Serializable{
 		}
 	}
 	
+	/**
+	 * Confere se o ano da Data é bissexto, caso seja retorna true
+	 * @param ano 
+	 * @return boolean
+	 * @version 1.0 (junho-2019)
+	 */
 	public boolean isBissexto() {
 		if(this.ano % 4 == 0) {
 			return true;
@@ -136,7 +205,15 @@ public class Data implements Comparable<Data>, Serializable{
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Retorna true caso a data seja válida, com dia, mes, e ano (> 1562) válidos
+	 * @param dia
+	 * @param mes
+	 * @param ano
+	 * @return boolean
+	 * @version 1.0 (junho-2019)
+	 */
 	public static boolean  isDataValida(int dia, int mes, int ano) {
 
 		if(ano < 1582) {
@@ -184,16 +261,31 @@ public class Data implements Comparable<Data>, Serializable{
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @return ano
+	 */
 	public int getAno() {
 		return ano;
 	}
-
+	
+	/**
+	 * Retorna uma representação da data em String da forma dd/mm/yyyy
+	 * @return String
+	 * @version 1.0 (junho-2019)
+	 */
 	public String toString() {
 		StringBuilder dataString = new StringBuilder();
 		dataString.append(this.dia).append("/").append(this.mes).append("/").append(this.ano);
 		return (dataString.toString());
 	}
-
+	
+	/**
+	 * Converte uma String do nome do mês em um inteiro que represente este mês. Caso nenhum mês represente retorna 0
+	 * @param mes
+	 * @return int
+	 * @version 1.0 (junho-2019)
+	 */
 	public int whatMes(String mes) {
 		
 		if(mes.toUpperCase().equals("JANEIRO")) {
@@ -227,6 +319,12 @@ public class Data implements Comparable<Data>, Serializable{
 		return 0;
 	}
 	
+	/**
+	 * Retorna true caso dia, mes e ano sejam iguais ao dia, mes e ano da outra Data
+	 * @param data
+	 * @return boolean
+	 * @version 1.0 (junho-2019)
+	 */
 	public boolean equals(Data data) {
 		
 		if(this.toString().equals(data.toString())) {
@@ -237,6 +335,12 @@ public class Data implements Comparable<Data>, Serializable{
 		
 	}
 	
+	/**
+	 * Retorna true caso esta Data.toString() sejam iguais a String data
+	 * @param data
+	 * @return boolean
+	 * @version 1.0 (junho-2019)
+	 */
 	public boolean equals(String data) {
 		
 		if(this.toString().equals(data)) {
@@ -257,20 +361,23 @@ public class Data implements Comparable<Data>, Serializable{
 		return data;
 	}
 	
-	//Deve ser nao-estatica na versao atual pois precisa-se comparar dois objetos diferentes
-	//Logo, precisa-se de uma data para comparar. Para ser estatico, bastava receber como argumento
-	//duas datas, seja em formato de string e construir dentro do metodo ou dois objetos data
-	//como argumento
-	public int compareTo(Data _data) {
-		if (this.ano > _data.ano)
+	/**
+	 * Compara dois objetos Data e vê qual a sua ordem de acordo com a ordenação natural das datas
+	 * 
+	 * @param data
+	 * @return 1 caso maior, 0 caso igual, -1 caso menor
+	 * @version 1.0 (junho-2019)
+	 */
+	public int compareTo(Data data) {
+		if (this.ano > data.ano)
 			return 1;
-		else if(this.ano == _data.ano) {
-			if(this.mes > _data.mes)
+		else if(this.ano == data.ano) {
+			if(this.mes > data.mes)
 				return 1;
-			else if(this.mes == _data.mes) {
-				if(this.dia > _data.dia)
+			else if(this.mes == data.mes) {
+				if(this.dia > data.dia)
 					return 1;
-				else if(this.dia == _data.dia)
+				else if(this.dia == data.dia)
 					return 0;
 				else
 					return -1;

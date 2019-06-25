@@ -5,15 +5,32 @@ import java.util.Comparator;
 
 import dataTempo.Periodo;
 
+/**
+ * Classe que representa um evento, implementa ItemAgenda e possui um campo para armazenar o local do evento
+ * @author Cassio
+ * @version 1.0 (junho-2019)
+ */
 public class Evento extends ItemAgenda implements Comparable<Evento>, Serializable{
 	private String local;
 	
+	/**
+	 * Cria um novo Evento sem descriçãp
+	 * @param local
+	 * @param titulo
+	 * @param periodo
+	 */
 	public Evento(String local, String titulo, Periodo periodo) {
 		super.setTitulo(titulo);
 		super.setPeriodo(periodo);
 		setLocal(local);
 	}
 	
+	/**
+	 * Cria um novo Evento
+	 * @param local
+	 * @param titulo
+	 * @param periodo
+	 */
 	public Evento(String local, String titulo, String descricao, Periodo periodo) {
 		super.setTitulo(titulo);
 		super.setDescricao(descricao);
@@ -21,17 +38,30 @@ public class Evento extends ItemAgenda implements Comparable<Evento>, Serializab
 		setLocal(local);
 	}
 	
-	
+	/**
+	 * Cria um novo Evento sem descrição e sem titulo
+	 * @param local
+	 * @param titulo
+	 * @param periodo
+	 */
 	public Evento(String local, Periodo periodo) {
 		super.setTitulo("Sem Titulo");
 		super.setPeriodo(periodo);
 		setLocal(local);
 	}
-
+	
+	/**
+	 * Retorn o local
+	 * @return String
+	 */
 	public String getLocal() {
 		return local;
 	}
-
+	
+	/**
+	 * Define o local
+	 * @param local
+	 */
 	public void setLocal(String local) {
 		this.local = local;
 	}

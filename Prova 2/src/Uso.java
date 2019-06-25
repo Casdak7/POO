@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 import agenda.Agenda;
@@ -37,7 +38,9 @@ public class Uso {
 					+ "6-Listar Metas por Prioridade\n "
 					+ "7-Listar Eventos por Local\n "
 					+ "8-Listar Lembretes por ordem de minutos para alarme\n "
-					+ "9-Sair");
+					+ "9-Sair\n "
+					+ "10-Gravar Agenda\n "
+					+ "11-Ler Agenda\n ");
 			System.out.print("Digite um comando:");
 			control = entrada.nextInt();
 			
@@ -86,6 +89,22 @@ public class Uso {
 			case 9:
 				System.out.println("Saindo...");
 				quit = true;
+				break;
+			case 10:
+				try {
+					agenda.gravarEmArquivo(Uso.inputString("Digite o nome do arquivo: "));
+				} catch (IOException e) {
+					System.out.println("Erro ao Grava arquivo!");
+					e.printStackTrace();
+				}
+				break;
+			case 11:
+				try {
+					agenda = Agenda.lerArquivo(Uso.inputString("Digite o nome do arquivo: "));
+				} catch (ClassNotFoundException | IOException e) {
+					System.out.println("Erro ao ler arquivo!");
+					e.printStackTrace();
+				}
 				break;
 			default:
 				System.out.println("Comando Invalido!");
@@ -146,9 +165,10 @@ public class Uso {
 	
 	public static String inputString(String mensagem) {
 		String entradaString;
+		Scanner entradaLinha = new Scanner(System.in);
 		
 		System.out.print(mensagem);
-		entradaString = entrada.next();
+		entradaString = entradaLinha.nextLine();
 		return entradaString;	
 	}
 	
